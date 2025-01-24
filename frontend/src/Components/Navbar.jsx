@@ -1,64 +1,184 @@
-// import React from 'react';
-// import logo from '../Assets/logo.png';
-// import hero_img from '../Assets/hero_img.png';
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom"; // Import useLocation
+import logo from "../Assets/logo.png";
+import { FaBars } from "react-icons/fa"; // Import hamburger icon
+import { FaTimes } from "react-icons/fa"; // Import close icon
 
-// const Header = () => {
-//   return (
-//     <div className='relative bg-white'>
-//       {/* Hero Section */}
-//       <div
-//         className='relative bg-cover bg-center h-screen'
-//         style={{ backgroundImage: `url(${hero_img})` }}
-//       >
-//         {/* Navbar Container */}
-//         <div className='absolute top-6 left-0 w-full flex items-center justify-center'>
-//           <div className='relative flex items-center justify-center w-full'>
-//             {/* Navbar */}
-//             <nav className='flex justify-between items-center py-4 px-6 bg-white rounded-full shadow-lg w-[90vw] sm:w-[80vw]'>
-//               {/* Logo */}
-//               <div>
-//                 <img src={logo} alt="Logo" className="h-10" />
-//               </div>
+const Navbar = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // For desktop dropdown
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false); // For mobile nav
+  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false); // For mobile login dropdown
+  const dropdownRef = useRef(null); // Ref for the desktop dropdown menu
+  const mobileDropdownRef = useRef(null); // Ref for the mobile dropdown menu
 
-//               {/* Navigation Links */}
-//               <ul className='hidden sm:flex space-x-8 text-lg text-gray-700'>
-//                 <li><a href="#home" className='hover:text-primary'>Home</a></li>
-//                 <li><a href="#properties" className='hover:text-primary'>Properties</a></li>
-//                 <li><a href="#homi-match" className='hover:text-primary'>Homi Match</a></li>
-//                 <li><a href="#about-us" className='hover:text-primary'>About Us</a></li>
-//               </ul>
+  const location = useLocation(); // Get the current location
 
-//               {/* Desktop Login Button */}
-//               <div className='hidden sm:flex space-x-4'>
-//                 <button className='bg-primary hover:bg-white text-gray-700 px-6 py-2 rounded-full'>
-//                   Login
-//                 </button>
-//               </div>
+  // Close the dropdown menu when clicking outside (desktop)
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
 
-//               {/* Mobile Navigation */}
-//               <div className='sm:hidden'>
-//                 <button className='text-2xl text-gray-700'>
-//                   &#9776; {/* Hamburger menu icon */}
-//                 </button>
-//               </div>
-//             </nav>
+    document.addEventListener("mousedown", handleClickOutside);
 
-           
-//           </div>
-//         </div>
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
-//         {/* Hero Content */}
-//         <div className='absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4 '>
-//           <h2 className='text-4xl sm:text-5xl font-bold w-[600px] mt-32'>
-//             Welcome to HOMI Renting made Simple and Seamless
-//           </h2>
-//           <button className='mt-6 bg-primary text-white px-6 py-3 rounded-full text-lg'>
-//             Find Your Home
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+  // Close the mobile dropdown menu when clicking outside (mobile)
+  useEffect(() => {
+    const handleClickOutsideMobile = (event) => {
+      if (
+        mobileDropdownRef.current &&
+        !mobileDropdownRef.current.contains(event.target)
+      ) {
+        setIsMobileDropdownOpen(false);
+      }
+    };
 
-// export default Header;
+    document.addEventListener("mousedown", handleClickOutsideMobile);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideMobile);
+    };
+  }, []);
+
+  return (
+    <div className="absolute top-6 left-0 w-full px-4 sm:px-12 flex items-center justify-center">
+      {/* Navbar */}
+      <nav className="flex justify-between items-center py-4 px-6 bg-white rounded-full shadow-lg w-full max-w-6xl z-50">
+        {/* Logo */}
+        <div>
+          <img src={logo} alt="Logo" className="h-10" />
+        </div>
+
+        {/* Mobile Hamburger Icon */}
+        <div className="sm:hidden">
+          <button
+            onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+            className="text-2xl text-gray-700"
+          >
+            <FaBars />
+          </button>
+        </div>
+
+        {/* Navigation Links */}
+        <ul className="hidden sm:flex space-x-8 text-lg text-gray-700">
+          <Link to="/">
+            <li
+              className={`${
+                location.pathname === "/" ? "bg-primary  rounded-xl px-4 py-1" : ""
+              } hover:text-gray-800 hover:bg-primary hover:rounded-xl hover:px-4 hover:py-1 cursor-pointer`}
+            >
+              Home
+            </li>
+          </Link>
+          <Link to="/property">
+            <li
+              className={`${
+                location.pathname === "/property" ? "bg-primary rounded-xl px-4 py-1" : ""
+              } hover:text-gray-800 hover:bg-primary hover:rounded-xl hover:px-4 hover:py-1 cursor-pointer`}
+            >
+              Properties
+            </li>
+          </Link>
+          <Link to="/profile">
+            <li
+              className={`${
+                location.pathname === "/homi-match" ? "bg-primary rounded-xl px-4 py-1" : ""
+              } hover:text-gray-800 hover:bg-primary hover:rounded-xl hover:px-4 hover:py-1 cursor-pointer`}
+            >
+              Homi Match
+            </li>
+          </Link>
+          <Link to="/about-us">
+            <li
+              className={`${
+                location.pathname === "/about-us" ? "bg-primary rounded-xl px-4 py-1" : ""
+              } hover:text-gray-800 hover:bg-primary hover:rounded-xl hover:px-4 hover:py-1 cursor-pointer`}
+            >
+              About Us
+            </li>
+          </Link>
+        </ul>
+
+        {/* Desktop Login Button with Dropdown */}
+        <div className="relative hidden sm:flex space-x-4" ref={dropdownRef}>
+          <button
+            className="bg-primary hover:bg-white text-gray-700 px-6 py-2 rounded-full cursor-pointer"
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          >
+            Login
+          </button>
+
+          {/* Dropdown Menu */}
+          {isDropdownOpen && (
+            <div className="absolute top-full mt-2 right-1 bg-white shadow-lg rounded-md w-40 z-50">
+              <ul className="space-y-2 text-sm text-gray-700">
+                <Link to="/create-profile">
+                  <li className="cursor-pointer block px-4 py-2 hover:bg-primary hover:rounded-full hover:text-white">
+                    Tenant
+                  </li>
+                </Link>
+                <Link to="/create-landlord">
+                  <li className="cursor-pointer block px-4 py-2 hover:bg-primary hover:rounded-full hover:text-white">
+                    Landlord
+                  </li>
+                </Link>
+              </ul>
+            </div>
+          )}
+        </div>
+
+        {/* Mobile Nav Links */}
+        {isMobileNavOpen && (
+          <div className="absolute top-0 left-0 w-full h-[60vh] bg-white z-40 flex flex-col items-center justify-center">
+            {/* Close Button */}
+            <button
+              onClick={() => setIsMobileNavOpen(false)}
+              className="absolute top-4 right-4 text-2xl text-gray-700"
+            >
+              <FaTimes />
+            </button>
+            <ul className="space-y-6 text-lg text-gray-700 mb-8">
+             <Link to='/'> <li className="hover:text-primary cursor-pointer">Home</li></Link>
+             <Link to='/property'> <li className="hover:text-primary cursor-pointer">Properties</li></Link>
+             <Link to='/profile'><li className="hover:text-primary cursor-pointer">Homi Match</li></Link>
+              <li className="hover:text-primary cursor-pointer">About Us</li>
+            </ul>
+            <div className="relative">
+              <button
+                onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
+                className="bg-primary hover:bg-primaryLight text-white px-6 py-3 rounded-full text-lg cursor-pointer"
+              >
+                Login
+              </button>
+
+              {/* Mobile Dropdown Menu */}
+              {isMobileDropdownOpen && (
+                <div
+                  className="absolute top-full mt-2 left-0 bg-white shadow-lg rounded-md w-40 z-50"
+                  ref={mobileDropdownRef}
+                >
+                  <ul className="space-y-2 text-sm text-gray-700">
+                  <Link to='/create-profile'>   <li className="cursor-pointer block px-4 py-2 hover:bg-primary hover:rounded-full hover:text-white">
+                      Rental
+                    </li></Link>
+                    <Link to='/create-landlord'> <li className="cursor-pointer block px-4 py-2 hover:bg-primary hover:rounded-full hover:text-white">
+                      Landlord
+                    </li></Link>
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </nav>
+    </div>
+  );
+};
+
+export default Navbar;

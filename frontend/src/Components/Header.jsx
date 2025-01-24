@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import logo from '../Assets/logo.png';
 import hero_img from '../Assets/hero_img.png';
 import featured from '../Assets/featured.png';
-import {Link} from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'; // Import useLocation
 
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // For desktop dropdown
@@ -10,6 +10,8 @@ const Header = () => {
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false); // For mobile login dropdown
   const dropdownRef = useRef(null); // Ref for the desktop dropdown menu
   const mobileDropdownRef = useRef(null); // Ref for the mobile dropdown menu
+
+  const location = useLocation(); // Get the current location
 
   // Close the dropdown menu when clicking outside (desktop)
   useEffect(() => {
@@ -64,17 +66,38 @@ const Header = () => {
 
             {/* Navigation Links */}
             <ul className="hidden sm:flex space-x-8 text-lg text-gray-700">
-              <Link to="/"><li className="hover:text-primary cursor-pointer">Home</li></Link>
-            <Link to="/property">  <li className="hover:text-primary cursor-pointer">Properties</li></Link>
-              <li className="hover:text-primary cursor-pointer">Homi Match</li>
-              <li className="hover:text-primary cursor-pointer">About Us</li>
+              <Link to="/">
+                <li
+                  className={`${
+                    location.pathname === "/" ? "bg-primary rounded-xl px-4 py-1" : ""
+                  } hover:text-gray-800 hover:bg-primary hover:rounded-xl hover:px-4 hover:py-1 cursor-pointer`}
+                >
+                  Home
+                </li>
+              </Link>
+              <Link to="/property">
+                <li
+                  className={`${
+                    location.pathname === "/property" ? "bg-primary rounded-xl px-4 py-1" : ""
+                  } hover:text-gray-800 hover:bg-primary hover:rounded-xl hover:px-4 hover:py-1 cursor-pointer`}
+                >
+                  Properties
+                </li>
+              </Link>
+              <li className={`${
+                  location.pathname === "/profile" ? "bg-primary rounded-xl px-4 py-1" : ""
+              } hover:text-gray-800 hover:bg-primary hover:rounded-xl hover:px-4 hover:py-1 cursor-pointer`}>
+                Homi Match
+              </li>
+              <li className={`${
+                  location.pathname === "/about-us" ? "bg-primary rounded-xl px-4 py-1" : ""
+              } hover:text-gray-800 hover:bg-primary hover:rounded-xl hover:px-4 hover:py-1 cursor-pointer`}>
+                About Us
+              </li>
             </ul>
 
             {/* Desktop Login Button with Dropdown */}
-            <div
-              className="relative hidden sm:flex space-x-4"
-              ref={dropdownRef}
-            >
+            <div className="relative hidden sm:flex space-x-4" ref={dropdownRef}>
               <button
                 className="bg-primary hover:bg-white text-gray-700 px-6 py-2 rounded-full cursor-pointer"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -86,12 +109,16 @@ const Header = () => {
               {isDropdownOpen && (
                 <div className="absolute top-full mt-2 right-1 bg-white shadow-lg rounded-md w-40 z-50">
                   <ul className="space-y-2 text-sm text-gray-700">
-                  <Link to="/create-profile"> <li className="cursor-pointer block px-4 py-2 hover:bg-primary hover:rounded-full hover:text-white">
-                      Tenant
-                    </li></Link> 
-                    <Link to="/create-Landlord">  <li className="cursor-pointer block px-4 py-2 hover:bg-primary hover:rounded-full hover:text-white">
-                      Landlord
-                    </li></Link> 
+                    <Link to="/create-profile">
+                      <li className="cursor-pointer block px-4 py-2 hover:bg-primary hover:rounded-full hover:text-white">
+                        Tenant
+                      </li>
+                    </Link>
+                    <Link to="/create-Landlord">
+                      <li className="cursor-pointer block px-4 py-2 hover:bg-primary hover:rounded-full hover:text-white">
+                        Landlord
+                      </li>
+                    </Link>
                   </ul>
                 </div>
               )}
@@ -121,9 +148,9 @@ const Header = () => {
           {isMobileNavOpen && (
             <div className="absolute top-0 left-0 w-full h-[60vh] bg-white z-40 flex flex-col items-center justify-center">
               <ul className="space-y-6 text-lg text-gray-700 mb-8">
-                <li className="hover:text-primary cursor-pointer">Home</li>
-                <li className="hover:text-primary cursor-pointer">Properties</li>
-                <li className="hover:text-primary cursor-pointer">Homi Match</li>
+                <Link to='/'> <li className="hover:text-primary cursor-pointer">Home</li></Link>
+                             <Link to='/property'> <li className="hover:text-primary cursor-pointer">Properties</li></Link>
+                             <Link to='/profile'><li className="hover:text-primary cursor-pointer">Homi Match</li></Link>
                 <li className="hover:text-primary cursor-pointer">About Us</li>
               </ul>
               <div className="relative">
@@ -158,10 +185,8 @@ const Header = () => {
 
           {/* Post a Rental Button */}
           <button className="cursor-pointer bg-gray-200 text-gray-800 px-8 py-5 rounded-full sm:block whitespace-nowrap hover:bg-primary hover:text-white transition-colors duration-300 z-50">
-  Post a Rental
-</button>
-
-        
+            Post a Rental
+          </button>
         </div>
 
         {/* Hero Content */}
