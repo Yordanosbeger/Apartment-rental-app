@@ -1,25 +1,25 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
-const express = require("express");
-const helmet = require("helmet");
-const cors = require("cors");
-const multer = require("multer");
+const express = require('express');
+const helmet = require('helmet');
+const cors = require('cors');
+const multer = require('multer');
 
 const app = express();
 
-const db = require("./db");
+const db = require('./db');
 
-const properties = require("./routes/properties");
-const users = require("./routes/users");
-const messages = require("./routes/messages");
+const properties = require('./routes/properties');
+const users = require('./routes/users');
+const messages = require('./routes/messages');
 
-const landlordProfiles = require("./routes/landlordProfiles");
+const landlordProfiles = require('./routes/landlordProfiles');
 
-const tenantProfiles = require("./routes/tenantProfiles");
+const tenantProfiles = require('./routes/tenantProfiles');
 
 // Create the public/uploads directory if it doesn't exist
-const uploadsDir = path.join(__dirname, "public/uploads");
+const uploadsDir = path.join(__dirname, 'public/uploads');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
@@ -42,7 +42,7 @@ function read(file) {
     fs.readFile(
       file,
       {
-        encoding: "utf-8",
+        encoding: 'utf-8',
       },
       (error, data) => {
         if (error) return reject(error);
@@ -56,32 +56,36 @@ module.exports = function application(ENV) {
   app.use(cors());
   app.use(helmet());
   app.use(express.json());
-  app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
-
+  app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
   // Serve static files from the public folder
-  app.use(express.static(path.join(__dirname, "public")));
-  console.log("Initializing users route...");
-  app.use("/api/users", users(db));
-  app.use("/api/properties", properties(db, upload)); // Pass Multer to the properties route
-  app.use("/api/messages", messages(db));
- 
-  app.use("/api/tenantProfiles", tenantProfiles(db));
-  app.use("/api/landlordProfiles", landlordProfiles(db));
-   // Mount the users router
+  app.use(express.static(path.join(__dirname, 'public')));
+  console.log('Initializing users route...');
+  app.use('/api/users', users(db));
+  app.use('/api/properties', properties(db, upload)); // Pass Multer to the properties route
+  app.use('/api/messages', messages(db));
+
+  app.use('/api/tenantProfiles', tenantProfiles(db));
+  app.use('/api/landlordProfiles', landlordProfiles(db));
+  // Mount the users router
+
+  app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('An error was not handled properly!');
+  });
 
   // Debug reset route for development or testing
-  if (ENV === "development" || ENV === "test") {
+  if (ENV === 'development' || ENV === 'test') {
     Promise.all([
       read(path.resolve(__dirname, `db/schema/create.sql`)),
       read(path.resolve(__dirname, `db/schema/${ENV}.sql`)),
     ])
       .then(([create, seed]) => {
-        app.get("/api/debug/reset", (request, response) => {
+        app.get('/api/debug/reset', (request, response) => {
           db.query(create)
             .then(() => db.query(seed))
             .then(() => {
-              response.status(200).send("Database Reset");
+              response.status(200).send('Database Reset');
             });
         });
       })
