@@ -5,13 +5,13 @@ import send_icon from '../Assets/send_icon.png';
 
 const PropertyFooter = () => {
   return (
-    <div className="p-6 mt-10">
-      <div className="flex flex-col md:flex-row md:justify-between">
+    <div className="p-6 mt-10 mx-2 sm:mx-[5%]">
+      <div className="flex flex-col md:flex-row md:justify-between md:gap-32">
         <div>
           <h3 className="text-deepBlue text-2xl font-medium mb-4">
             Start Your Real Estate Journey Today
           </h3>
-          <p className="text-gray-600 mb-6 w-[70%]">
+          <p className="text-gray-600 mb-6 w-full text-sm">
             Your dream property is just a click away. Whether you're looking for
             a new home, a strategic investment, or expert real estate advice,
             Estatein is here to assist you every step of the way. Take the first
@@ -20,8 +20,8 @@ const PropertyFooter = () => {
             assistance.
           </p>
         </div>
-        <div className="w-[30%]">
-        <button className="text-deepBlue bg-primary py-3 px-3  rounded-md shadow-md hover:bg-primaryBlue">
+        <div className="w-full">
+        <button className="text-deepBlue bg-primary py-3 px-5  rounded-md shadow-md hover:bg-primaryBlue">
           Explore Properties
         </button>
         </div>

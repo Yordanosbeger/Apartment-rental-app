@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../Assets/logo.png';
+import search_icon from '../Assets/search_icon.png';
 import property_bg from '../Assets/property_bg.png';
 import calendar_icon from '../Assets/calendar_icon.png';
 import chevron_button from '../Assets/chevron_button.png';
@@ -23,25 +23,27 @@ const PropertyHeader = () => {
         </div>
 
         {/* Hero Content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center  px-4">
           {/* Search Input and Find Property Button */}
-          <div className="flex w-full max-w-lg">
+          <div className="flex w-full max-w-4xl">
             <div className="relative w-full bg-gray-100 rounded-lg p-2">
               <input
                 type="text"
                 placeholder="Search for a Property"
                 className="w-full border rounded-lg py-2 px-4 pr-20"
               />
-              <button
-                className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-primaryBlue text-white py-1 px-4 rounded-lg"
-              >
-                Find Property
-              </button>
+             <button
+  className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-primaryBlue text-white flex items-center gap-2 py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300"
+>
+  <img src={search_icon} alt="Search Icon" className="w-4 h-4" />
+  <span>Find Property</span>
+</button>
+
             </div>
           </div>
 
           {/* Other Input Fields */}
-          <div className="hidden lg:flex gap-2 mt-3 bg-gray-100 rounded-lg p-2">
+          <div className="hidden lg:flex gap-2 mt-1 bg-gray-100 rounded-lg p-2">
             {/* Location Input */}
             <div className="relative flex items-center w-full max-w-xs">
               <img

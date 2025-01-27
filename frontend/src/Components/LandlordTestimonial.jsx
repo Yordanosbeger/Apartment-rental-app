@@ -5,15 +5,15 @@ import Nora from '../Assets/Nora.png';
 
 const LandlordTestimonial = () => {
   return (
-    <div className="py-10 px-4 sm:px-6 lg:px-20 mb-[170px]">
-      <div className="text-center mb-28">
-        <h3 className="text-2xl  sm:text-3xl font-semibold text-gray-800">
+    <div className="py-10 px-4 sm:px-6 lg:px-20">
+      <div className="text-center mb-32">
+        <h3 className="text-3xl  sm:text-3xl font-semibold text-gray-800 mb-10">
           What people say about us
         </h3>
       </div>
       <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-10">
         {/* Testimonial 1 */}
-        <div className="shadow-xl bg-white rounded-bl-3xl rounded-br-3xl p-4 max-w-[370px] h-auto lg:mt-44">
+        <div className="shadow-xl bg-white rounded-bl-3xl rounded-br-3xl p-4 max-w-[350px] h-auto  ">
           <h4 className="text-lg font-medium text-gray-700 mb-2">Testimonial</h4>
           <hr className="border-gray-300 mb-4" />
           <div>
@@ -37,7 +37,7 @@ const LandlordTestimonial = () => {
         </div>
 
         {/* Center Image */}
-        <div className="relative">
+        <div className="relative bottom-0 top-10">
           <img
             src={landlord_img}
             alt="Landlord"
@@ -52,7 +52,7 @@ const LandlordTestimonial = () => {
         </div>
 
         {/* Testimonial 2 */}
-        <div className="shadow-xl bg-white rounded-bl-3xl rounded-br-3xl p-4 max-w-[370px] h-auto lg:mt-[-300px]">
+        <div className="shadow-xl bg-white rounded-bl-3xl rounded-br-3xl p-4 max-w-[350px] h-auto lg:mt-[-250px] mt-4">
           <h4 className="text-lg font-medium text-gray-700 mb-2">Testimonial</h4>
           <hr className="border-gray-300 mb-4" />
           <div>
@@ -77,13 +77,13 @@ const LandlordTestimonial = () => {
       </div>
 
 {/* Landlords Header */}
-<div className="mt-[-200px] flex justify-end">
-  <h3 className="text-lg font-bold text-gray-800 lg:mr-[25%] md:mr-[20%] sm:mr-[10%]">
-    Landlords
-  </h3>
+<div className=" hidden relative">
+  <div className="absolute top-[-70px] right-0 lg:mr-[25%] md:mr-[20%] sm:mr-[10%]">
+    <h3 className="text-lg font-bold text-gray-800">
+      Landlords
+    </h3>
+  </div>
 </div>
-
-
     </div>
   );
 };

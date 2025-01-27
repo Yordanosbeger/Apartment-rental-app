@@ -7,7 +7,7 @@ import instagram_icon from '../Assets/instagram.png';
 
 const Footer = () => {
   return (
-    <div className="bg-deepBlue text-white py-2 px-6 sm:px-10 lg:px-20">
+    <div className="bg-deepBlue text-white py-2 px-6 sm:px-10 lg:px-20 ">
       {/* Top Section */}
       <div className="flex flex-col lg:flex-row justify-between items-center mb-8 mt-10">
         <p className="text-xl sm:text-2xl font-light text-center lg:text-left mb-6 lg:mb-0 lg:max-w-[40%]">

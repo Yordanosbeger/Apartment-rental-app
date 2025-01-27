@@ -56,7 +56,7 @@ const Header = () => {
         className="relative bg-cover bg-center h-screen"
         style={{ backgroundImage: `url(${hero_img})` }}
       >
-        <div className="absolute top-6 left-0 w-full px-4 sm:px-12 flex items-center justify-center">
+        <div className="absolute top-6 left-0 w-full px-4 sm:px-12 flex items-center justify-center gap-5">
           {/* Navbar */}
           <nav className="flex justify-between items-center py-4 px-6 bg-white rounded-full shadow-lg w-full max-w-6xl z-50">
             {/* Logo */}
