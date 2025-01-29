@@ -56,10 +56,10 @@ const PropertyDetailHeader = () => {
 
         {/* Content Wrapper */}
        {/* Content Wrapper */}
-<div className="bg-white rounded-lg shadow-3xl p-6 mt-32 mx-auto w-[80%] max-w-7xl absolute left-1/2 transform -translate-x-1/2 flex flex-col justify-center items-center">
+<div className="bg-white rounded-lg shadow-2xl p-6 mt-32 mx-auto w-[80%] max-w-7xl absolute left-1/2 transform -translate-x-1/2 flex flex-col justify-center items-center">
 
         {/* Upper Carousel */}
-<div className="flex justify-center items-center space-x-2">
+<div className="flex justify-center items-center p-3 space-x-2 border border-gray-700 rounded-xl">
   <div className="flex overflow-hidden space-x-2 w-full max-w-3xl">
     {images.slice(carouselIndex, carouselIndex + 9).map((image, index) => (
       <img
