@@ -9,6 +9,7 @@ import home7 from '../Assets/home7.png';
 import home8 from '../Assets/home8.png';
 import home9 from '../Assets/home9.png';
 import live_listing from '../Assets/Live_Listing.png';
+import {Link} from 'react-router-dom'
 
 const PropertyListing = () => {
   const listings = [
@@ -88,9 +89,9 @@ const PropertyListing = () => {
                   <span className="text-gray-400 text-sm">Price</span>
                   <p className="font-bold text-lg">$1,250</p>
                 </div>
-                <button className="rounded-lg bg-primary px-4 py-2 hover:bg-primaryLight">
+              <Link to='/property-detail'>  <button className="rounded-lg bg-primary px-4 py-2 hover:bg-primaryLight">
                   View Property Details
-                </button>
+                </button></Link>
               </div>
             </div>
           ))}

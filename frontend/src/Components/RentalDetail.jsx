@@ -1,9 +1,11 @@
 import React from "react";
+import Footer from '../Components/Footer'
 
 const RentalDetail = () => {
   return (
+    <div>
     <div className="bg-gradient-to-b from-white via-[#aeefdc] to-[#fbfbfb] min-h-screen p-4 sm:p-6 lg:p-8">
-      <div className="flex ">
+      <div className="flex gap-4">
         <div className="p-4 ">
           <p className="text-[10px] text-gray-600">Listing Price</p>
           <p className="text-2xl font-bold text-gray-900">$1,250</p>
@@ -246,6 +248,9 @@ const RentalDetail = () => {
           </div>
         </div>
       </div>
+    
+    </div>
+    <Footer/>
     </div>
   );
 };
