@@ -57,7 +57,7 @@ const Description = () => {
         </div>
 
         {/* Right Section */}
-        <div className="lg:w-1/3 text-gray-700">
+        <div className="lg:w-1/3 text-gray-700">d
         <h3 className="text-2xl font-semibold mb-4">Key Features and Amenities</h3>
         <div className="flex flex-col gap-2">
         <div className="flex items-center gap-1 text-white bg-gradient-to-r from-[#FF5757] to-[#FF9897] p-2 rounded-lg ">
