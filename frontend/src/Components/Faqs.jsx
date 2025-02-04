@@ -18,22 +18,23 @@ const Faqs = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 ">
       <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-        <div className="mb-4 md:mb-0">
-          <h3 className="text-2xl font-bold">Frequently Asked Questions</h3>
-          <p className="text-gray-600">
-            Find answers to common questions about Estatein's services, property listings, and the real estate process. We're here to provide clarity and assist you every step of the way.
-          </p>
-        </div>
-        <button className="bg-white border border-gray-800 rounded-lg hover:bg-primary hover:text-white cursor-pointer px-6 py-2">
-          View All FAQ’s
-        </button>
-      </div>
+  <div className="mb-4 md:mb-0 text-center md:text-left">
+    <h3 className="text-2xl font-bold">Frequently Asked Questions</h3>
+    <p className="text-gray-600 w-4/6 mx-auto md:mx-0">
+      Find answers to common questions about Estatein's services, property listings, and the real estate process. We're here to provide clarity and assist you every step of the way.
+    </p>
+  </div>
+  <button className="bg-white border border-gray-800 rounded-lg hover:bg-primary hover:text-white cursor-pointer px-4 py-2 w-64">
+    View All FAQ’s
+  </button>
+</div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        <div className="border border-gray-800 rounded-lg p-6">
+        <div className="border border-gray-800 rounded-lg p-6 ">
           <h4 className="text-lg font-semibold mb-2">How do I search for properties on HOMI?</h4>
-          <p className="text-gray-600 mb-4">
+          <p className="text-gray-600 mb-4 ">
             Learn how to use our user-friendly search tools to find properties that match your criteria.
           </p>
           <button className="bg-white border border-gray-800 rounded-lg hover:bg-primary hover:text-white px-4 py-2">
