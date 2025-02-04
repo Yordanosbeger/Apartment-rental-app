@@ -282,7 +282,7 @@ const RentalDetail = () => {
     </div>
 
   {/* Right Section - Form */}
-  <div className="lg:w-1/2">
+  <div className="lg:w-1/2 md:flex md:justify-end items-end">
     <form action="" className="space-y-6">
       {/* Name Fields */}
       <div className="flex flex-col sm:flex-row gap-4">
